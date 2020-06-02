@@ -5,7 +5,7 @@
  */
 package controller;
 
-import java.io.PrintWriter;
+import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,24 +15,38 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author fabriciogmc
  */
-@WebServlet("/escrevernome")
+@WebServlet({"*.action","/"})
 public class HttpServletBasico extends HttpServlet{
     
     @Override
     public void doGet(HttpServletRequest req,
                        HttpServletResponse res){
-        try{
-        req.setCharacterEncoding("UTF-8");
-        String nome = req.getParameter("nome_completo");
-        res.setContentType("text/html");
-        res.setCharacterEncoding("UTF-8");
-        String resNome = 
-            new String("Seu nome é: ".getBytes(),"UTF-8") + nome;
         
-            res.setContentType("text/html");
-            PrintWriter pw = res.getWriter();            
-            pw.write(resNome); pw.close();
-        } 
-        catch (Exception e){}
+        String path = req.getServletPath();
+        ServletContext sc = req.getServletContext();
+        System.out.println(path); 
+        switch (path){
+            case "/":
+               try{
+                    sc.getRequestDispatcher("/jsp/form.jsp").forward(req, res);
+                } catch (Exception e){}
+               break;
+            case "/escrevernome.action":
+                try{
+                    req.setCharacterEncoding("UTF-8");
+                    String nome = req.getParameter("nome_completo");
+                    nome = nome.toUpperCase();
+                    res.setContentType("text/html");
+                    res.setCharacterEncoding("UTF-8");
+                    req.setAttribute("nomeCompleto", nome);
+                    sc.getRequestDispatcher("/jsp/resposta.jsp").forward(req, res);
+                }catch (Exception e){}
+            break;
+            default:
+                try{
+                   sc.getRequestDispatcher("/jsp/nao_encontrado.jsp").forward(req, res);
+                }catch (Exception e){}               
+        }
+        
     }  
 }
