@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author fabriciogmc
  */
 @WebServlet({"*.action","/"})
-public class HttpServletBasico extends HttpServlet{
+public class Principal extends HttpServlet{
     
     @Override
     public void doGet(HttpServletRequest req,
@@ -28,7 +28,7 @@ public class HttpServletBasico extends HttpServlet{
         switch (path){
             case "/":
                try{
-                    sc.getRequestDispatcher("/jsp/form.jsp").forward(req, res);
+                    sc.getRequestDispatcher("/jsp/login.jsp").forward(req, res);
                 } catch (Exception e){}
                break;
             case "/escrevernome.action":
@@ -42,6 +42,16 @@ public class HttpServletBasico extends HttpServlet{
                     sc.getRequestDispatcher("/jsp/resposta.jsp").forward(req, res);
                 }catch (Exception e){}
             break;
+            case "/inicio.action":
+               try{
+                    sc.getRequestDispatcher("/jsp/inicio.jsp").forward(req, res);
+                } catch (Exception e){}
+               break;
+            case "/calculadora.action":
+               try{
+                    sc.getRequestDispatcher("/jsp/calculadora.jsp").forward(req, res);
+                } catch (Exception e){}
+               break;
             default:
                 try{
                    sc.getRequestDispatcher("/jsp/nao_encontrado.jsp").forward(req, res);
