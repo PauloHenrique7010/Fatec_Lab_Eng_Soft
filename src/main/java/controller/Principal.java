@@ -52,6 +52,11 @@ public class Principal extends HttpServlet{
                     sc.getRequestDispatcher("/jsp/calculadora.jsp").forward(req, res);
                 } catch (Exception e){}
                break;
+            case "/historico.action":
+               try{
+                    sc.getRequestDispatcher("/jsp/historico.jsp").forward(req, res);
+                } catch (Exception e){}
+               break;
             default:
                 try{
                    sc.getRequestDispatcher("/jsp/nao_encontrado.jsp").forward(req, res);
