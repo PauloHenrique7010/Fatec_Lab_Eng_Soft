@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="login-form">
-    <form method="get" action="inicio.action">
+    <form method="post" action="inicio">
         <h2 class="text-center">Calculadora JSP</h2>       
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Digite o e-mail" required="required">

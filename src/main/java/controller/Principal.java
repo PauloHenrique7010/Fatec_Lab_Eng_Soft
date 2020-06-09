@@ -15,14 +15,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author fabriciogmc
  */
-@WebServlet({"*.action","/"})
+@WebServlet(urlPatterns = {"/"})
 public class Principal extends HttpServlet{
     
     @Override
-    public void doGet(HttpServletRequest req,
-                       HttpServletResponse res){
+    public void doGet(HttpServletRequest req,HttpServletResponse res){
+        try{
+            req.getRequestDispatcher("/jsp/login.jsp").forward(req, res);
+        }
+        catch(Exception e){
+            System.out.println("Ocorreu o seguinte erro ao entrar: "+e);            
+        }
+
         
-        String path = req.getServletPath();
+        /*String path = req.getServletPath();
         ServletContext sc = req.getServletContext();
         System.out.println(path); 
         switch (path){
@@ -61,7 +67,7 @@ public class Principal extends HttpServlet{
                 try{
                    sc.getRequestDispatcher("/jsp/nao_encontrado.jsp").forward(req, res);
                 }catch (Exception e){}               
-        }
+        }*/
         
     }  
 }

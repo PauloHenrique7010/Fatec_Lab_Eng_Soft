@@ -1,10 +1,12 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page pageEncoding="UTF-8" %>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <html lang="en">
 <head>
   <title>Calculadora JSP</title>
-  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
 </head>
 <style>
   ul {
@@ -46,12 +48,13 @@
   li.dotted {border-style: dotted;}
 </style>
 <body>
+
   <div class="html">
     <div class="menu">  
       <ul>
-        <li><a href="/Calculadora/inicio.action" class="inicio">Inicio</a></li>
-        <li><a href="/Calculadora/calculadora.action">Calculadora</a></li>
-        <li><a href="/Calculadora/historico.action">Histórico</a></li>
+        <li><a href="/Calculadora/inicio" class="inicio">Inicio</a></li>
+        <li><a href="/Calculadora/calculadora">Calculadora</a></li>
+        <li><a href="/Calculadora/historico">Histórico</a></li>
       </ul>  
     </div>   
      
