@@ -1,24 +1,26 @@
 plugins {
     id 'java'
     id 'war'
-    id 'org.gretty' version '2.2.0'    
+    id 'org.gretty' version '2.2.0' 
 }
 
 dependencies {
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     testCompile 'javax.servlet:javax.servlet-api:3.1.0'
-    //Mockito framework
-    testCompile "org.mockito:mockito-core:2.+"
-    
+        
     //JUnit 5 framework
     testCompileOnly 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'  
+
+    implementation 'com.google.guava:guava:26.0-jre'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.2.0'
+    implementation 'org.hibernate:hibernate-core:5.3.6.Final'
 }
 
 
-repositories {
-   
+repositories {   
     jcenter()
+    mavenCentral()
 }
 
 /* configuração do gretty pra usar tomcat*/
