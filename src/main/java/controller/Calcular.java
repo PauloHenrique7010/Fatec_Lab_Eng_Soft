@@ -5,12 +5,22 @@
  */
 package controller;
 
+
+
+
 import java.io.PrintWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import model.MdlCalculadora;
 
 
 @WebServlet(urlPatterns = {"/calcular"})
@@ -33,6 +43,16 @@ public class Calcular extends HttpServlet{
             if(operacao.equals("+")){
                 resultado = n1 + n2;
             }
+
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia_simples");        
+            EntityManager em = emf.createEntityManager();
+        
+            /* Criação de uma entidade - CREATE */        
+            MdlCalculadora u0 = new MdlCalculadora();
+            u0.setContaEfetuada(numero1+" "+operacao+" "+numero2+" = "+resultado.toString());
+            em.getTransaction().begin();
+            em.persist(u0);
+            em.getTransaction().commit();
             
         		
 		    res.setContentType("text/plain");
