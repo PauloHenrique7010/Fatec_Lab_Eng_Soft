@@ -39,7 +39,7 @@ public class UsuarioService { //persistence class
             return calc;            
 	}
 
-    public Boolean login(String nome, String senha){
+    public long login(String nome, String senha){
         Query query = em.createQuery("FROM usuario u where nome_usuario=:nomeUsuario"); 
         query.setParameter("nomeUsuario", nome);
         List<Usuario> usuarios = query.getResultList();
@@ -49,15 +49,14 @@ public class UsuarioService { //persistence class
         else{
             for(Usuario ui: usuarios){
                 if (ui.getSenha().equals(senha)){
-                    System.out.println("encontrou");
-                    return true;
+                    return ui.getId();
                 }
                 else{
-                    return false;
+                    return 0;
                 }
             } 
         }
-        return false;
+        return 0;
     }
 
     public static String md5(String input) {

@@ -13,22 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.HttpSession; 
 
-@WebServlet(urlPatterns = {"/"})
-public class Principal extends HttpServlet{
+
+@WebServlet(urlPatterns = {"/logout"})
+public class Logout extends HttpServlet{
     
     @Override
     public void doGet(HttpServletRequest req,HttpServletResponse res){
         try{
-            HttpSession session = req.getSession(false);  
-            if(session!=null){  
-                String name = (String)session.getAttribute("nomeUsuario");  
-                String cod = (String)session.getAttribute("codUsuario");  
-          
-                System.out.print("Hello, "+name+" Welcome to Profile");  
-                System.out.print("Seu código é: "+cod);
-            
-            
-            }  
+            HttpSession session = req.getSession();  
+            session.invalidate(); 
+
+            System.out.println("Desconectado");
+
             req.getRequestDispatcher("/jsp/login.jsp").forward(req, res);
         }
         catch(Exception e){

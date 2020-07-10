@@ -15,6 +15,8 @@ import java.io.PrintWriter;
 import model.Usuario;
 import model.UsuarioService;
 
+import javax.servlet.http.HttpSession;  
+
 @WebServlet(urlPatterns = {"/inicio"})
 public class Inicio extends HttpServlet{
     
@@ -26,8 +28,11 @@ public class Inicio extends HttpServlet{
             String senha = req.getParameter("senha");   
             senha = us.md5(senha); //criptografa
 
-                          
-            if (us.login(nomeUsuario, senha)){
+            Long codUsuarioLogado = us.login(nomeUsuario, senha);
+            if (codUsuarioLogado > 0){
+                HttpSession session = req.getSession();  
+                session.setAttribute("nomeUsuario",nomeUsuario);
+                session.setAttribute("codUsuario", Long.toString(codUsuarioLogado));
                 req.getRequestDispatcher("/jsp/inicio.jsp").forward(req, res);
             }
             else{
