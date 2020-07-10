@@ -34,10 +34,10 @@
     <form method="post" action="inicio">
         <h2 class="text-center">Calculadora JSP</h2>       
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Digite o e-mail" required="required">
+            <input type="text" class="form-control" placeholder="Digite o nome de usuário" name="nome_usuario" required="required">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Senha" required="required">
+            <input type="password" class="form-control" placeholder="Senha" name="senha" required="required">
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Entrar</button>

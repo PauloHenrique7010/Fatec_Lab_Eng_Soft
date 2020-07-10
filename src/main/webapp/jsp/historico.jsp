@@ -9,7 +9,7 @@
             <%
 			List<MdlCalculadora> users = (List<MdlCalculadora>) request.getAttribute("registros");
             for(MdlCalculadora user: users){
-                out.print("<li>: " + user.getContaEfetuada() + "</li><br/>");                
+                out.print("<li>" + user.getContaEfetuada() + "</li><br/>");                
             } 		
             %>
         </ul>
