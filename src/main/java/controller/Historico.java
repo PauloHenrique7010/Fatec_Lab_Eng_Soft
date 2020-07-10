@@ -11,12 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+import model.MdlCalculadora;
+import model.MdlCalculadoraService;
+import java.util.List;
+
+
 @WebServlet(urlPatterns = {"/historico"})
 public class Historico extends HttpServlet{
     
     @Override
     public void doGet(HttpServletRequest req,HttpServletResponse res){
         try{
+            MdlCalculadoraService servCalc = new MdlCalculadoraService();
+		    List<MdlCalculadora> registros = servCalc.list();			
+		    req.setAttribute("registros", registros);
             req.getRequestDispatcher("/jsp/historico.jsp").forward(req, res);
         }
         catch(Exception e){
