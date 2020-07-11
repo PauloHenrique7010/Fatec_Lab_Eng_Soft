@@ -20,12 +20,13 @@ import org.hibernate.HibernateException;
 
 public class MdlCalculadoraService { //persistence class
     
-	public List<MdlCalculadora> list(){
+	public List<MdlCalculadora> list(Integer codUsuario){
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia_simples");        
             EntityManager em = emf.createEntityManager();
 
             List<MdlCalculadora> calc = null;
-            Query query = em.createQuery("FROM calculadora c"); 
+            Query query = em.createQuery("FROM calculadora c where cod_usuario=:codigo"); 
+            query.setParameter("codigo", codUsuario);
             calc = query.getResultList();
             em.close();
             emf.close();

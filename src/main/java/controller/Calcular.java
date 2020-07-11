@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession; 
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -47,13 +48,19 @@ public class Calcular extends HttpServlet{
 
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia_simples");        
             EntityManager em = emf.createEntityManager();
+
+            Integer codUsuario = 0;
+            HttpSession session = req.getSession(false);  
+            if((session!=null) && ((String)session.getAttribute("codUsuario") != null)){   
+                codUsuario = Integer.parseInt((String)session.getAttribute("codUsuario"));
+            }
         
             /* Criação de uma entidade - CREATE */        
             MdlCalculadora u0 = new MdlCalculadora();
             u0.setContaEfetuada(numero1+" "+operacao+" "+numero2+" = "+resultado.toString());
             Date x=new Date();
             u0.setDataOperacao(x);
-            u0.setCodUsuario(1);
+            u0.setCodUsuario(codUsuario);
             em.getTransaction().begin();
             em.persist(u0);
             em.getTransaction().commit();
@@ -61,7 +68,6 @@ public class Calcular extends HttpServlet{
         		
 		    res.setContentType("text/plain");
 		    res.getWriter().write(resultado.toString());
-            //res.getWriter().write(numero2);
         }
         catch(Exception e){
             System.out.println("Ocorreu o seguinte erro ao entrar: "+e);            

@@ -10,12 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession; 
 
 import model.MdlCalculadora;
 import model.MdlCalculadoraService;
 import java.util.List;
-import javax.servlet.http.HttpSession; 
+
 
 
 @WebServlet(urlPatterns = {"/historico"})
@@ -24,14 +24,17 @@ public class Historico extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest req,HttpServletResponse res){
         try{
+            Integer codUsuario = 0;
             HttpSession session = req.getSession(false);  
             if((session!=null) && ((String)session.getAttribute("nomeUsuario") == null)){   
                 res.sendRedirect(req.getContextPath() + "/");
             }
-            
+            else if((session!=null) && ((String)session.getAttribute("codUsuario") != null)){   
+                codUsuario = Integer.parseInt((String)session.getAttribute("codUsuario"));
+            }            
 
             MdlCalculadoraService servCalc = new MdlCalculadoraService();
-		    List<MdlCalculadora> registros = servCalc.list();			
+		    List<MdlCalculadora> registros = servCalc.list(codUsuario);			
 		    req.setAttribute("registros", registros);
             req.getRequestDispatcher("/jsp/historico.jsp").forward(req, res);
         }
