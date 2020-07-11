@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import java.util.Date;
 /**
  *
  * @author paulo
@@ -22,6 +22,10 @@ public class MdlCalculadora { //persistence class
     private  long id;           //persistence attribute
     @Column(name="conta_efetuada")
     private  String contaEfetuada;       //persistence attribute
+    @Column(name="data_operacao")
+    private Date dataOperacao;
+    @Column(name="cod_usuario")
+    private  int codUsuario;
     public MdlCalculadora(){}          //zero parameter constructor
     public String getContaEfetuada() {   
         return contaEfetuada;
@@ -35,4 +39,16 @@ public class MdlCalculadora { //persistence class
     public void setId(long id) {
         this.id = id;
     }  
+    public Date getDataOperacao(){
+        return dataOperacao;
+    }
+    public void setDataOperacao(Date dataOperacao){
+        this.dataOperacao = dataOperacao;
+    }
+    public int getCodUsuario(){
+        return codUsuario;
+    }
+    public void setCodUsuario(int codUsuario){
+        this.codUsuario = codUsuario;
+    }
 }

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import javax.servlet.http.HttpSession; 
+
 
 @WebServlet(urlPatterns = {"/calculadora"})
 public class Calculadora extends HttpServlet{
@@ -19,21 +21,14 @@ public class Calculadora extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest req,HttpServletResponse res){
         try{
+            HttpSession session = req.getSession(false);  
+            if((session!=null) && ((String)session.getAttribute("nomeUsuario") == null)){   
+                res.sendRedirect(req.getContextPath() + "/");
+            }
             req.getRequestDispatcher("/jsp/calculadora.jsp").forward(req, res);
         }
         catch(Exception e){
             System.out.println("Ocorreu o seguinte erro ao entrar: "+e);            
         }        
     }  
-    @Override
-    public void doPost(HttpServletRequest req,HttpServletResponse res){
-        try{
-            String campo = req.getParameter("txtTexto");
-            //req.setAttribute("campo", "valor");
-            //req.getRequestDispatcher("/jsp/calculadora.jsp").forward(req, res);
-        }
-        catch(Exception e){
-            System.out.println("Ocorreu o seguinte erro ao entrar: "+e);            
-        }        
-    } 
 }

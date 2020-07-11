@@ -20,16 +20,15 @@ public class Principal extends HttpServlet{
     public void doGet(HttpServletRequest req,HttpServletResponse res){
         try{
             HttpSession session = req.getSession(false);  
-            if(session!=null){  
-                String name = (String)session.getAttribute("nomeUsuario");  
-                String cod = (String)session.getAttribute("codUsuario");  
-          
-                System.out.print("Hello, "+name+" Welcome to Profile");  
-                System.out.print("Seu código é: "+cod);
-            
-            
+            if((session!=null) && ((String)session.getAttribute("nomeUsuario") != null)){   
+                res.sendRedirect(req.getContextPath() + "/inicio");
+                //req.getRequestDispatcher("/jsp/inicio.jsp").forward(req, res);            
+                //String name = (String)session.getAttribute("nomeUsuario");  
+                //String cod = (String)session.getAttribute("codUsuario");                  
+
+                //System.out.println("to aqui"+name);
             }  
-            req.getRequestDispatcher("/jsp/login.jsp").forward(req, res);
+            req.getRequestDispatcher("/jsp/login.jsp").forward(req, res);            
         }
         catch(Exception e){
             System.out.println("Ocorreu o seguinte erro ao entrar: "+e);            

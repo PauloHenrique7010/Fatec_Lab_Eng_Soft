@@ -21,6 +21,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import model.MdlCalculadora;
+import java.util.Date;
 
 
 @WebServlet(urlPatterns = {"/calcular"})
@@ -50,6 +51,9 @@ public class Calcular extends HttpServlet{
             /* Criação de uma entidade - CREATE */        
             MdlCalculadora u0 = new MdlCalculadora();
             u0.setContaEfetuada(numero1+" "+operacao+" "+numero2+" = "+resultado.toString());
+            Date x=new Date();
+            u0.setDataOperacao(x);
+            u0.setCodUsuario(1);
             em.getTransaction().begin();
             em.persist(u0);
             em.getTransaction().commit();

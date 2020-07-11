@@ -47,6 +47,10 @@ public class Inicio extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest req,HttpServletResponse res){
         try{
+            HttpSession session = req.getSession(false);  
+            if((session!=null) && ((String)session.getAttribute("nomeUsuario") == null)){   
+                res.sendRedirect(req.getContextPath() + "/");
+            }
             req.getRequestDispatcher("/jsp/inicio.jsp").forward(req, res);
         }
         catch(Exception e){

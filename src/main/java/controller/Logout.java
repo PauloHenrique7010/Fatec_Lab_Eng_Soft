@@ -21,11 +21,8 @@ public class Logout extends HttpServlet{
     public void doGet(HttpServletRequest req,HttpServletResponse res){
         try{
             HttpSession session = req.getSession();  
-            session.invalidate(); 
-
-            System.out.println("Desconectado");
-
-            req.getRequestDispatcher("/jsp/login.jsp").forward(req, res);
+            session.invalidate();                
+            res.sendRedirect(req.getContextPath() + "/");            
         }
         catch(Exception e){
             System.out.println("Ocorreu o seguinte erro ao entrar: "+e);            
