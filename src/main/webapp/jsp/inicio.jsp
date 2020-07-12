@@ -1,4 +1,5 @@
 <%@ include file="cabecalho.jsp"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
     <div class="container">
 
         <form method="get" action="escrevernome.action">

@@ -27,11 +27,13 @@ public class Principal extends HttpServlet{
                 //String cod = (String)session.getAttribute("codUsuario");                  
 
                 //System.out.println("to aqui"+name);
-            }  
-            req.getRequestDispatcher("/jsp/login.jsp").forward(req, res);            
+            } 
+            else{
+                req.getRequestDispatcher("/jsp/login.jsp").forward(req, res);            
+            }
         }
         catch(Exception e){
-            System.out.println("Ocorreu o seguinte erro ao entrar: "+e);            
+            System.out.println("Ocorreu o seguinte erro: "+e);            
         }       
     }  
 }

@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<%@page pageEncoding="UTF-8" %>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<html lang="en">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <head>
   <title>Calculadora JSP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">

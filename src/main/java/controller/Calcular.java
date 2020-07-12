@@ -45,6 +45,16 @@ public class Calcular extends HttpServlet{
             if(operacao.equals("+")){
                 resultado = n1 + n2;
             }
+            if(operacao.equals("-")){
+                resultado = n1 - n2;
+            }
+            if(operacao.equals("*")){
+                resultado = n1 * n2;
+            }
+            if(operacao.equals("/")){
+                resultado = n1 / n2;
+            }
+
 
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia_simples");        
             EntityManager em = emf.createEntityManager();
