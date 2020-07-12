@@ -69,8 +69,7 @@
   
         
 </script>
-<div class="corpo">
-
+<div class="container">
     <form name="frm_calc" action="" method="POST">
     <center>
     <table width="200" cellpadding="3" cellspacing="5" style="color:#FFB90F; background-color:#000000; border:2pt solid#FFB90F">

@@ -3,8 +3,22 @@
 <%@page import="model.MdlCalculadora" %>
 <%@page import="model.MdlCalculadoraService" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    tr:hover {background-color:#f5f5f5;}
+    </style>
 
-    <div class="corpo">
+    <div class="container">
         <h1> Histórico de operações realizadas na calculadora</h1>
         <% 
             String nomeUsuario = "";
@@ -14,15 +28,22 @@
             out.print("<p>Usuário: " + nomeUsuario+"</p><br/>");
         %>
         
-        <ul>
+        
+        <table>
+            <tr>
+                <th>Calculo efetuado</th>
+                <th>Data/hora efetuado</th>
+            </tr>
+            
             <%
 			List<MdlCalculadora> users = (List<MdlCalculadora>) request.getAttribute("registros");
             for(MdlCalculadora user: users){
-                out.print("<li>" + user.getContaEfetuada() + " Horário: "+user.getDataOperacao()+"</li><br/>");                
+                out.print("<tr>"+
+                            "<td>"+user.getContaEfetuada() + "</td>"+
+                            "<td>"+user.getDataOperacao()+"</td>"+
+                        "</tr>");                
             } 		
             %>
-        </ul>
-        
-
+        </table>
     </div>
 <%@ include file="rodape.jsp"%>

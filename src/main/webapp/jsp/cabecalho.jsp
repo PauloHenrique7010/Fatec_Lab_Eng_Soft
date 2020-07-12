@@ -6,54 +6,61 @@
   <meta charset="utf-8">
 </head>
 <style>
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  li {
-    display: inline;
-    
-  }
-  .inicio{
-    background-color: dodgerblue;
-  }
-
   body{
     margin: 0px;
     padding: 0px;
   }
-
-  .menu{
-    background-color: dodgerblue;
-    width: 100%;
-    height: 5vw;
-    margin:  0px;
-    padding: 0px;
+  ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
   }
-  .item{
-    width:50vh;
-    border-radius: 20px;
-    background-color: cadetblue;
+  
+  li {
+      float: left;
+  }
+  
+  li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
   }
 
-  .corpo{
-    padding: 2vh;
+  .container{
+    margin : 5vh;
+  }
+  
+  
+  li a:hover:not(.active) {
+      background-color: #111;
+  }
+  
+  .active {
+      background-color: #4CAF50;
   }
 
-  li.dotted {border-style: dotted;}
-</style>
+  .desactive{
+    background-color: crimson;
+  }
+  </style>
 <body>
 
-  <div class="html">
-    <div class="menu">  
-      <ul>
+  <ul>
+    <li><a href="/Calculadora/inicio" class="inicio">Inicio</a></li>
+    <li><a href="/Calculadora/calculadora">Calculadora</a></li>
+    <li><a href="/Calculadora/historico">Histórico</a></li>
+    <li style="float:right"><a class="desactive" href="/Calculadora/logout">Logout</a></li>
+  </ul>
+      <!--<ul>
         <li><a href="/Calculadora/inicio" class="inicio">Inicio</a></li>
         <li><a href="/Calculadora/calculadora">Calculadora</a></li>
         <li><a href="/Calculadora/historico">Histórico</a></li>
-      </ul>  
-    </div>   
+      </ul>  -->
+  
      
 
 

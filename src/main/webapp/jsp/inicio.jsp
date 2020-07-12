@@ -2,12 +2,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <div class="container">
 
-        <form method="get" action="escrevernome.action">
-            <div class="form-group">
-              <label for="email">Nome inicio:</label>
-              <input type="text" class="form-control" placeholder="Informe o seu nome" name="nome_completo">
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-          </form>
+        <p>Bem vindo a calculadora JSP, para acessar a calculadora navegue pelo menu</p>
     </div>
 <%@ include file="rodape.jsp"%>
