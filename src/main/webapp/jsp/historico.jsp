@@ -1,5 +1,7 @@
 <%@ include file="cabecalho.jsp"%>
 <%@page import="java.util.List" %>
+<%@page import="java.util.Date" %>
+<%@page import="java.text.*" %>
 <%@page import="model.MdlCalculadora" %>
 <%@page import="model.MdlCalculadoraService" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,7 +18,7 @@
     }
     
     tr:hover {background-color:#f5f5f5;}
-    </style>
+</style>
 
     <div class="container">
         <h1> Histórico de operações realizadas na calculadora</h1>
@@ -36,11 +38,17 @@
             </tr>
             
             <%
-			List<MdlCalculadora> users = (List<MdlCalculadora>) request.getAttribute("registros");
-            for(MdlCalculadora user: users){
+            Date data = new Date();
+            SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+			List<MdlCalculadora> registros = (List<MdlCalculadora>) request.getAttribute("registros");
+            for(MdlCalculadora linha: registros){
+                
+                data = linha.getDataOperacao();                
+                String dataOperacao = formatador.format(data);
+
                 out.print("<tr>"+
-                            "<td>"+user.getContaEfetuada() + "</td>"+
-                            "<td>"+user.getDataOperacao()+"</td>"+
+                            "<td>"+linha.getContaEfetuada() + "</td>"+
+                            "<td>"+dataOperacao+"</td>"+
                         "</tr>");                
             } 		
             %>

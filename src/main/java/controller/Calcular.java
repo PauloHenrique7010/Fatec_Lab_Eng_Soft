@@ -23,6 +23,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import model.MdlCalculadora;
 import java.util.Date;
+import java.lang.Math;
 
 
 @WebServlet(urlPatterns = {"/calcular"})
@@ -36,11 +37,17 @@ public class Calcular extends HttpServlet{
             String numero2 = req.getParameter("numero2");
 
             Double resultado = 0.0;
-            Double n1;
-            Double n2;
+            Double n1 = 0.0;
+            Double n2 = 0.0;
 
-            n1 = Double.parseDouble(numero1);
-            n2 = Double.parseDouble(numero2);
+            if (numero1 != ""){
+                n1 = Double.parseDouble(numero1);
+            }
+
+            if (numero2 != ""){
+                n2 = Double.parseDouble(numero2);
+            }            
+            
 
             if(operacao.equals("+")){
                 resultado = n1 + n2;
@@ -54,8 +61,12 @@ public class Calcular extends HttpServlet{
             if(operacao.equals("/")){
                 resultado = n1 / n2;
             }
-
-
+            if(operacao.equals("^")){
+                resultado = Math.pow (n1, n2);
+            }
+            if(operacao.equals("V```")){
+                resultado = Math.sqrt(n2);
+            }
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia_simples");        
             EntityManager em = emf.createEntityManager();
 
@@ -66,13 +77,13 @@ public class Calcular extends HttpServlet{
             }
         
             /* Criação de uma entidade - CREATE */        
-            MdlCalculadora u0 = new MdlCalculadora();
-            u0.setContaEfetuada(numero1+" "+operacao+" "+numero2+" = "+resultado.toString());
+            MdlCalculadora calc = new MdlCalculadora();
+            calc.setContaEfetuada(numero1+" "+operacao+" "+numero2+" = "+resultado.toString());
             Date x=new Date();
-            u0.setDataOperacao(x);
-            u0.setCodUsuario(codUsuario);
+            calc.setDataOperacao(x);
+            calc.setCodUsuario(codUsuario);
             em.getTransaction().begin();
-            em.persist(u0);
+            em.persist(calc);
             em.getTransaction().commit();
             
         		

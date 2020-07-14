@@ -27,7 +27,6 @@
         font-weight: bold;
     }
 </style>
-</head>
 <body>
 <div class="login-form">
     <form method="post" action="inicio">
