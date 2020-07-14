@@ -27,31 +27,33 @@
             if((session!=null) && ((String)session.getAttribute("nomeUsuario") != null)){   
                 nomeUsuario = (String)session.getAttribute("nomeUsuario");
             }
-            out.print("<p>Usuário: " + nomeUsuario+"</p><br/>");
-        %>
-        
-        
-        <table>
-            <tr>
-                <th>Calculo efetuado</th>
-                <th>Data/hora efetuado</th>
-            </tr>
-            
-            <%
+            out.print("<h2><b>Usuário: " + nomeUsuario+"</b></h2><hr><br/>");
+       
             Date data = new Date();
             SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			List<MdlCalculadora> registros = (List<MdlCalculadora>) request.getAttribute("registros");
-            for(MdlCalculadora linha: registros){
-                
-                data = linha.getDataOperacao();                
-                String dataOperacao = formatador.format(data);
 
-                out.print("<tr>"+
-                            "<td>"+linha.getContaEfetuada() + "</td>"+
-                            "<td>"+dataOperacao+"</td>"+
-                        "</tr>");                
-            } 		
-            %>
-        </table>
+            if(registros.isEmpty()){
+                out.print("<h1>Não há registros de histórico!</h1>");
+            }
+            else{
+                out.print("<table>"+
+                            "<tr>"+
+                                "<th>Calculo efetuado</th>"+
+                                "<th>Data/hora efetuado</th>"+
+                            "</tr>");
+                for(MdlCalculadora linha: registros){
+                
+                    data = linha.getDataOperacao();                
+                    String dataOperacao = formatador.format(data);
+    
+                    out.print("<tr>"+
+                                "<td>"+linha.getContaEfetuada() + "</td>"+
+                                "<td>"+dataOperacao+"</td>"+
+                            "</tr>");                
+                } 
+                out.print("</table>");
+            }            	
+            %>        
     </div>
 <%@ include file="rodape.jsp"%>
