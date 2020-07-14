@@ -22,11 +22,6 @@ public class Principal extends HttpServlet{
             HttpSession session = req.getSession(false);  
             if((session!=null) && ((String)session.getAttribute("nomeUsuario") != null)){   
                 res.sendRedirect(req.getContextPath() + "/inicio");
-                //req.getRequestDispatcher("/jsp/inicio.jsp").forward(req, res);            
-                //String name = (String)session.getAttribute("nomeUsuario");  
-                //String cod = (String)session.getAttribute("codUsuario");                  
-
-                //System.out.println("to aqui"+name);
             } 
             else{
                 req.getRequestDispatcher("/jsp/login.jsp").forward(req, res);            

@@ -65,7 +65,12 @@ public class Calcular extends HttpServlet{
                 resultado = Math.pow (n1, n2);
             }
             if(operacao.equals("V```")){
-                resultado = Math.sqrt(n2);
+                if (numero1 != ""){ //raiz enesima
+                    resultado = Math.pow(n2,1.0/n1);
+                }
+                else{
+                    resultado = Math.sqrt(n2);
+                }
             }
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia_simples");        
             EntityManager em = emf.createEntityManager();

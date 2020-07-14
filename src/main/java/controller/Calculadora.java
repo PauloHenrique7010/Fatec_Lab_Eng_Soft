@@ -25,7 +25,9 @@ public class Calculadora extends HttpServlet{
             if((session!=null) && ((String)session.getAttribute("nomeUsuario") == null)){   
                 res.sendRedirect(req.getContextPath() + "/");
             }
-            req.getRequestDispatcher("/jsp/calculadora.jsp").forward(req, res);
+            else{
+                req.getRequestDispatcher("/jsp/calculadora.jsp").forward(req, res);
+            }
         }
         catch(Exception e){
             System.out.println("Ocorreu o seguinte erro ao entrar: "+e);            

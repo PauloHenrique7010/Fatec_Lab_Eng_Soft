@@ -29,14 +29,17 @@ public class Historico extends HttpServlet{
             if((session!=null) && ((String)session.getAttribute("nomeUsuario") == null)){   
                 res.sendRedirect(req.getContextPath() + "/");
             }
-            else if((session!=null) && ((String)session.getAttribute("codUsuario") != null)){   
-                codUsuario = Integer.parseInt((String)session.getAttribute("codUsuario"));
-            }            
-
-            MdlCalculadoraService servCalc = new MdlCalculadoraService();
-		    List<MdlCalculadora> registros = servCalc.list(codUsuario);			
-		    req.setAttribute("registros", registros);
-            req.getRequestDispatcher("/jsp/historico.jsp").forward(req, res);
+            else{//se estiver logado, continua o sistema
+                if((session!=null) && ((String)session.getAttribute("codUsuario") != null)){   
+                    codUsuario = Integer.parseInt((String)session.getAttribute("codUsuario"));
+                }    
+                if (codUsuario > 0){       
+                    MdlCalculadoraService servCalc = new MdlCalculadoraService();
+                    List<MdlCalculadora> registros = servCalc.list(codUsuario);			
+                    req.setAttribute("registros", registros);
+                    req.getRequestDispatcher("/jsp/historico.jsp").forward(req, res);
+                }
+            }
         }
         catch(Exception e){
             System.out.println("Ocorreu o seguinte erro ao entrar: "+e);            
