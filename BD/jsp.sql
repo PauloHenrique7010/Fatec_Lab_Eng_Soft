@@ -16,6 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Current Database: `jsp`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `jsp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `jsp`;
+
+--
 -- Table structure for table `calculadora`
 --
 
@@ -23,12 +31,12 @@ DROP TABLE IF EXISTS `calculadora`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `calculadora` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `conta_efetuada` varchar(50) DEFAULT NULL,
-  `data_operacao` datetime DEFAULT NULL,
+  `id` bigint NOT NULL,
   `cod_usuario` int DEFAULT NULL,
+  `conta_efetuada` varchar(255) DEFAULT NULL,
+  `data_operacao` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,30 +45,7 @@ CREATE TABLE `calculadora` (
 
 LOCK TABLES `calculadora` WRITE;
 /*!40000 ALTER TABLE `calculadora` DISABLE KEYS */;
-INSERT INTO `calculadora` VALUES (1,'1 + 1 = 2.0','2020-07-13 22:19:12',1);
 /*!40000 ALTER TABLE `calculadora` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `hibernate_sequence`
---
-
-DROP TABLE IF EXISTS `hibernate_sequence`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hibernate_sequence` (
-  `next_val` bigint DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `hibernate_sequence`
---
-
-LOCK TABLES `hibernate_sequence` WRITE;
-/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (2),(2);
-/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -97,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-13 22:19:59
+-- Dump completed on 2020-07-16 18:38:11

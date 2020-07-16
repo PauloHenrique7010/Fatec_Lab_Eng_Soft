@@ -39,6 +39,16 @@
                 msgValidacao += "Não é possível dividir um número por 0";
             }
         }
+
+        if (operacao != "V```"){
+            if (numero1 == 0){
+                msgValidacao += "Necessário informar o primeiro número da operação.";
+            }
+            if (numero2 == 0){
+                msgValidacao += "Necessário informar o segundo número da operação.";
+            }
+        }
+
         
         if (msgValidacao != ""){
             alert(msgValidacao);
